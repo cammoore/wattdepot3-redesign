@@ -178,7 +178,7 @@ public class Location extends BaseModel {
     buf.append(", \"altitude\": ");
     buf.append(this.altitude);
     buf.append(", \"description\": \"");
-    buf.append(this.altitude);
+    buf.append(this.description);
     buf.append("\"}");
     return buf.toString();
   }

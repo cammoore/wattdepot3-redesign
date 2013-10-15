@@ -3,6 +3,9 @@
  */
 package org.wattdepot.core.datamodel;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * BaseModel - Base class for most data model classes.
  * 
@@ -11,7 +14,7 @@ package org.wattdepot.core.datamodel;
  */
 public class BaseModel {
   private String id;
-  private UserGroup owner;
+  private List<UserGroup> owner;
 
   /**
    * Creates a new instance with the given id.
@@ -21,6 +24,8 @@ public class BaseModel {
    */
   public BaseModel(String id) {
     this.id = id;
+    owner = new ArrayList<UserGroup>();
+    
   }
 
   /**
@@ -34,7 +39,7 @@ public class BaseModel {
    * @return the owner
    */
   public UserGroup getOwner() {
-    return owner;
+    return owner.get(1);
   }
 
   /**
@@ -42,7 +47,7 @@ public class BaseModel {
    *          the owner to set
    */
   public void setOwner(UserGroup owner) {
-    this.owner = owner;
+    this.owner.add(1, owner);
   }
 
   /**

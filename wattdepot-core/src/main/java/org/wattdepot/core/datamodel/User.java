@@ -13,6 +13,8 @@ import java.util.List;
  * 
  */
 public class User {
+  /** The admin user. */
+  public static final User ADMIN = new User("admin", "admin", "admin", true);
 
   /** A unique id for the User. */
   protected String id;
@@ -24,6 +26,13 @@ public class User {
   protected Boolean admin;
   /** Additional properties of the user. */
   protected List<Property> properties;
+
+  static {
+    String password = System.getenv("wattdepot-server.admin.password");
+    if (password != null) {
+      ADMIN.setPassword(password);
+    }
+  }
 
   /**
    * Hide the default constructor.
@@ -234,7 +243,9 @@ public class User {
     return true;
   }
 
-  /* (non-Javadoc)
+  /*
+   * (non-Javadoc)
+   * 
    * @see java.lang.Object#toString()
    */
   @Override
@@ -265,7 +276,7 @@ public class User {
       buf.deleteCharAt(buf.length() - 1);
     }
     buf.append("]}");
-    
+
     return buf.toString();
   }
 }

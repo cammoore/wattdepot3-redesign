@@ -13,12 +13,18 @@ import java.util.List;
  * 
  */
 public class UserGroup {
+  /** The admin user group.  */
+  public static final UserGroup ADMIN_GROUP = new UserGroup("adminGroup");
 
   /** A unique id. */
   protected String id;
   /** The users in this group. */
   protected List<User> users;
 
+  static {
+    ADMIN_GROUP.add(User.ADMIN);
+  }
+  
   /**
    * Hide the default constructor.
    */
