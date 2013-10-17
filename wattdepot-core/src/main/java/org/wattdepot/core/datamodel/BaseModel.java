@@ -75,7 +75,7 @@ public class BaseModel {
    *          The user to test.
    * @return true if the user is in the owner's UserGroup.
    */
-  public boolean isAllowed(User user) {
+  public boolean isAllowed(Object user) {
     if (owner != null) {
       return (owner.contains(user) ? true : false);
     }

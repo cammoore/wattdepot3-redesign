@@ -45,7 +45,7 @@ public class JacksonExample {
         new Double(30), "Hale Aloha Ilima residence hall 6th floor");
     SensorModel model1 = new SensorModel("model1", "protocol1", "type1", "version1");
     Sensor sensor1 = new Sensor("sensor1", "uri1", loc1, model1);
-    mapper = new ObjectMapper();
+//    mapper = new ObjectMapper();
     mapper.writeValue(System.out, sensor1);
     System.out.println();
   }

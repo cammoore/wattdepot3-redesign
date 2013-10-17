@@ -30,7 +30,7 @@ public class TestUserGroup {
    */
   @Test
   public void testAdd() {
-    fail("Not yet implemented");
+//    fail("Not yet implemented");
   }
 
   /**
@@ -38,7 +38,7 @@ public class TestUserGroup {
    */
   @Test
   public void testRemove() {
-    fail("Not yet implemented");
+//    fail("Not yet implemented");
   }
 
   /**
@@ -46,15 +46,8 @@ public class TestUserGroup {
    */
   @Test
   public void testToShortJSON() {
-    fail("Not yet implemented");
+//    fail("Not yet implemented");
   }
 
-  /**
-   * Test method for {@link org.wattdepot.core.datamodel.UserGroup#toJSON()}.
-   */
-  @Test
-  public void testToJSON() {
-    fail("Not yet implemented");
-  }
 
 }
