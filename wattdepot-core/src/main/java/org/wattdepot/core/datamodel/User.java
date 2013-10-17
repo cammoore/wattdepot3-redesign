@@ -64,7 +64,7 @@ public class User {
   /**
    * @return the unique id.
    */
-  public String id() {
+  public String getId() {
     return id;
   }
 
@@ -259,17 +259,18 @@ public class User {
    */
   public String toJSON() {
     StringBuffer buf = new StringBuffer();
-    buf.append("{\"id\": ");
+    buf.append("{\"id\": \"");
     buf.append(this.id);
     buf.append("\", \"name\": \"");
     buf.append(this.name);
-    buf.append("\", \"password\": ");
+    buf.append("\", \"password\": \"");
     buf.append(this.password);
     buf.append("\", \"admin\": ");
     buf.append(this.admin);
-    buf.append("\", [");
+    
+    buf.append(", \"properties\": [");
     for (Property p : this.properties) {
-      buf.append("{\"key\": \"" + p.getKey() + "\" \"value\": \"" + p.getValue() + "\"},");
+      buf.append("{\"key\": \"" + p.getKey() + "\", \"value\": \"" + p.getValue() + "\"},");
     }
     if (properties.size() > 0) {
       // remove trailing ,

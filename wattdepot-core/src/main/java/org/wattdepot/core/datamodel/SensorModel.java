@@ -18,6 +18,13 @@ public class SensorModel extends BaseModel {
   private String version;
 
   /**
+   * Hide the default constructor.
+   */
+  protected SensorModel() {
+
+  }
+
+  /**
    * @param uniqueId
    *          The unique id.
    * @param protocol
@@ -145,24 +152,8 @@ public class SensorModel extends BaseModel {
    */
   @Override
   public String toString() {
-    return "MeterModel [id=" + id() + ", protocol=" + protocol + ", type=" + type + ", version=" + version + "]";
+    return "MeterModel [id=" + getId() + ", protocol=" + protocol + ", type=" + type + ", version="
+        + version + "]";
   }
-  
-  /**
-   * @return The JSON String representation of this SensorModel.
-   */
-  public String toJSON() {
-    StringBuffer buf = new StringBuffer();
-    buf.append("{id :\"");
-    buf.append(this.id());
-    buf.append("\", \"protocol\": \"");
-    buf.append(this.protocol);
-    buf.append("\", \"type\": \"");
-    buf.append(this.type);
-    buf.append("\", \"version\": \"");
-    buf.append(this.version);
-    buf.append("\"}");
-    
-    return buf.toString();
-  }
+
 }

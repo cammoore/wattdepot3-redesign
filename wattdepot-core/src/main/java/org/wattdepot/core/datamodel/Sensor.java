@@ -23,6 +23,13 @@ public class Sensor extends BaseModel {
   protected List<Property> properties;
 
   /**
+   * Default constructor.
+   */
+  protected Sensor() {
+
+  }
+
+  /**
    * @param uniqueId
    *          The unique id.
    * @param uri
@@ -213,8 +220,8 @@ public class Sensor extends BaseModel {
    */
   @Override
   public String toString() {
-    return "Sensor [id=" + id() + ", uri=" + uri + ", location=" + location + ", model="
-        + model + ", properties=" + properties + "]";
+    return "Sensor [id=" + getId() + ", uri=" + uri + ", location=" + location + ", model=" + model
+        + ", properties=" + properties + "]";
   }
 
   /**
@@ -223,14 +230,14 @@ public class Sensor extends BaseModel {
   public String toShortJSON() {
     StringBuffer buf = new StringBuffer();
     buf.append("{\"id\": \"");
-    buf.append(this.id());
+    buf.append(this.getId());
     buf.append("\", \"uri\": \"");
     buf.append(this.uri);
     buf.append("\", \"locationId\": \"");
-    buf.append(this.location.id());
+    buf.append(this.location.getId());
     buf.append("\", \"modelId\": \"");
-    buf.append(this.model.id());
-    buf.append("\", [");
+    buf.append(this.model.getId());
+    buf.append("\", \"properties\": [");
     for (Property p : this.properties) {
       buf.append("{\"key\": \"" + p.getKey() + "\" \"value\": \"" + p.getValue() + "\"},");
     }
@@ -241,29 +248,5 @@ public class Sensor extends BaseModel {
     buf.append("]}");
     return buf.toString();
   }
-  
-  /**
-   * @return The JSON version of this Sensor with full representation of Location and SensorModel.
-   */
-  public String toJSON() {
-    StringBuffer buf = new StringBuffer();
-    buf.append("{\"id\": \"");
-    buf.append(this.id());
-    buf.append("\", \"uri\": \"");
-    buf.append(this.uri);
-    buf.append("\", \"location\": ");
-    buf.append(this.location.toJSON());
-    buf.append(", \"model\": ");
-    buf.append(this.model.toJSON());
-    buf.append(", [");
-    for (Property p : this.properties) {
-      buf.append("{\"key\": \"" + p.getKey() + "\" \"value\": \"" + p.getValue() + "\"},");
-    }
-    if (properties.size() > 0) {
-      // remove trailing ,
-      buf.deleteCharAt(buf.length() - 1);
-    }
-    buf.append("]}");
-    return buf.toString();
-  }
+
 }

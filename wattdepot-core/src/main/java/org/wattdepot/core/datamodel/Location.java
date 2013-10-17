@@ -5,9 +5,9 @@ package org.wattdepot.core.datamodel;
 
 /**
  * Location - position on the earth.
- *
+ * 
  * @author Cam Moore
- *
+ * 
  */
 public class Location extends BaseModel {
   /**
@@ -28,70 +28,96 @@ public class Location extends BaseModel {
   private String description;
 
   /**
-   * @param uniqueId The unique id.
-   * @param latitude The decimal Latitude.
-   * @param longitude The decimal Longitude.
-   * @param altitude The altitude in meters w.r.t. MSL.
-   * @param description A String description of the Location.
+   * Default constructor.
    */
-  public Location(String uniqueId, Double latitude, Double longitude, Double altitude, String description) {
+  protected Location() {
+
+  }
+
+  /**
+   * @param uniqueId
+   *          The unique id.
+   * @param latitude
+   *          The decimal Latitude.
+   * @param longitude
+   *          The decimal Longitude.
+   * @param altitude
+   *          The altitude in meters w.r.t. MSL.
+   * @param description
+   *          A String description of the Location.
+   */
+  public Location(String uniqueId, Double latitude, Double longitude, Double altitude,
+      String description) {
     super(uniqueId);
     this.latitude = latitude;
     this.longitude = longitude;
     this.altitude = altitude;
     this.description = description;
   }
-  
+
   /**
    * @return the latitude
    */
   public Double getLatitude() {
     return latitude;
   }
+
   /**
-   * @param latitude the latitude to set
+   * @param latitude
+   *          the latitude to set
    */
   public void setLatitude(Double latitude) {
     this.latitude = latitude;
   }
+
   /**
    * @return the longitude
    */
   public Double getLongitude() {
     return longitude;
   }
+
   /**
-   * @param longitude the longitude to set
+   * @param longitude
+   *          the longitude to set
    */
   public void setLongitude(Double longitude) {
     this.longitude = longitude;
   }
+
   /**
    * @return the altitude
    */
   public Double getAltitude() {
     return altitude;
   }
+
   /**
-   * @param altitude the altitude to set
+   * @param altitude
+   *          the altitude to set
    */
   public void setAltitude(Double altitude) {
     this.altitude = altitude;
   }
+
   /**
    * @return the description
    */
   public String getDescription() {
     return description;
   }
+
   /**
-   * @param description the description to set
+   * @param description
+   *          the description to set
    */
   public void setDescription(String description) {
     this.description = description;
   }
 
-  /* (non-Javadoc)
+  /*
+   * (non-Javadoc)
+   * 
    * @see java.lang.Object#hashCode()
    */
   @Override
@@ -105,7 +131,9 @@ public class Location extends BaseModel {
     return result;
   }
 
-  /* (non-Javadoc)
+  /*
+   * (non-Javadoc)
+   * 
    * @see java.lang.Object#equals(java.lang.Object)
    */
   @Override
@@ -123,7 +151,7 @@ public class Location extends BaseModel {
     if (altitude == null) {
       if (other.altitude != null) {
         return false;
-      }   
+      }
     }
     else if (!altitude.equals(other.altitude)) {
       return false;
@@ -152,35 +180,18 @@ public class Location extends BaseModel {
     else if (!longitude.equals(other.longitude)) {
       return false;
     }
-    return true;
+    return super.equals(obj);
   }
 
-  /* (non-Javadoc)
+  /*
+   * (non-Javadoc)
+   * 
    * @see java.lang.Object#toString()
    */
   @Override
   public String toString() {
-    return "Location [id=" + id() + ", latitude=" + latitude + ", longitude=" + longitude + ", altitude=" + altitude
-        + ", description=" + description + "]";
-  }
-  
-  /**
-   * @return The JSON String representation of this Location.
-   */
-  public String toJSON() {
-    StringBuffer buf = new StringBuffer();
-    buf.append("{id :\"");
-    buf.append(this.id());
-    buf.append("\", \"latitude\": ");
-    buf.append(this.latitude);
-    buf.append(", \"longitude\": ");
-    buf.append(this.longitude);
-    buf.append(", \"altitude\": ");
-    buf.append(this.altitude);
-    buf.append(", \"description\": \"");
-    buf.append(this.description);
-    buf.append("\"}");
-    return buf.toString();
+    return "Location [id=" + getId() + ", latitude=" + latitude + ", longitude=" + longitude
+        + ", altitude=" + altitude + ", description=" + description + "]";
   }
 
 }

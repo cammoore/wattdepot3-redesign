@@ -3,7 +3,7 @@
  */
 package org.wattdepot.core.datamodel;
 
-import java.util.Date;
+import javax.xml.datatype.XMLGregorianCalendar;
 
 /**
  * Measurement - represents a measurement from a sensor.
@@ -13,7 +13,7 @@ import java.util.Date;
  */
 public class Measurement {
   private Sensor sensor;
-  private Date timestamp;
+  private XMLGregorianCalendar timestamp;
   private Double value;
   private String measurementType;
 
@@ -34,7 +34,7 @@ public class Measurement {
    * @param measurementType
    *          The type of the measurement.
    */
-  public Measurement(Sensor sensor, Date timestamp, Double value, String measurementType) {
+  public Measurement(Sensor sensor, XMLGregorianCalendar timestamp, Double value, String measurementType) {
     this.sensor = sensor;
     this.timestamp = timestamp;
     this.value = value;
@@ -51,7 +51,7 @@ public class Measurement {
   /**
    * @return the timestamp
    */
-  public Date getTimestamp() {
+  public XMLGregorianCalendar getTimestamp() {
     return timestamp;
   }
 
@@ -149,36 +149,18 @@ public class Measurement {
   }
 
   /**
-   * @return The JSON representation of this Measurement.
-   */
-  public String toJSON() {
-    StringBuffer buf = new StringBuffer();
-    buf.append("{\"sensor\": ");
-    buf.append(sensor.toJSON());
-    buf.append(", \"timestamp\": ");
-    buf.append(timestamp);
-    buf.append(", \"value\": ");
-    buf.append(value);
-    buf.append(", \"measurementType\": \"");
-    buf.append(timestamp);
-    buf.append("\"}");
-    
-    return buf.toString();
-  }
-
-  /**
    * @return The JSON representation of this Measurement with Sensor Id instead of embedded Sensor.
    */
   public String toShortJSON() {
     StringBuffer buf = new StringBuffer();
     buf.append("{\"sensorId\": \"");
-    buf.append(sensor.id());
-    buf.append("\", \"timestamp\": ");
+    buf.append(sensor.getId());
+    buf.append("\", \"timestamp\": \"");
     buf.append(timestamp);
-    buf.append(", \"value\": ");
+    buf.append("\", \"value\": ");
     buf.append(value);
     buf.append(", \"measurementType\": \"");
-    buf.append(timestamp);
+    buf.append(measurementType);
     buf.append("\"}");    
     return buf.toString();
   }

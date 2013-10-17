@@ -123,5 +123,18 @@ public class Property {
   public String toString() {
     return "Property [key=" + key + ", value=" + value + "]";
   }
+  
+  /**
+   * @return The JSON representation of this Property.
+   */
+  public String toJSON() {
+    StringBuffer buf = new StringBuffer();
+    buf.append("{\"key\": \"");
+    buf.append(key);
+    buf.append("\", \"value\": \"");
+    buf.append(value);
+    buf.append("\"}");
+    return buf.toString();
+  }
 
 }

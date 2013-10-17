@@ -23,6 +23,12 @@ public class SensorProcess extends BaseModel {
   protected List<Property> properties;
 
   /**
+   * Hide the default constructor. 
+   */
+  protected SensorProcess() {
+    
+  }
+  /**
    * @param id
    *          The unique id.
    * @param sensor
@@ -137,7 +143,7 @@ public class SensorProcess extends BaseModel {
   public int hashCode() {
     final int prime = 31;
     int result = 1;
-    result = prime * result + ((id() == null) ? 0 : id().hashCode());
+    result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
     result = prime * result + ((pollingInterval == null) ? 0 : pollingInterval.hashCode());
     result = prime * result + ((properties == null) ? 0 : properties.hashCode());
     result = prime * result + ((sensor == null) ? 0 : sensor.hashCode());
@@ -161,12 +167,12 @@ public class SensorProcess extends BaseModel {
       return false;
     }
     SensorProcess other = (SensorProcess) obj;
-    if (id() == null) {
-      if (other.id() != null) {
+    if (getId() == null) {
+      if (other.getId() != null) {
         return false;
       }
     }
-    else if (!id().equals(other.id())) {
+    else if (!getId().equals(other.getId())) {
       return false;
     }
     if (pollingInterval == null) {
@@ -203,7 +209,7 @@ public class SensorProcess extends BaseModel {
    */
   @Override
   public String toString() {
-    return "SensorProcess [id=" + id() + ", sensor=" + sensor + ", pollingInterval="
+    return "SensorProcess [id=" + getId() + ", sensor=" + sensor + ", pollingInterval="
         + pollingInterval + ", properties=" + properties + "]";
   }
 
@@ -213,9 +219,9 @@ public class SensorProcess extends BaseModel {
   public String toShortJSON() {
     StringBuffer buf = new StringBuffer();
     buf.append("{\"id\": \"");
-    buf.append(this.id());
+    buf.append(this.getId());
     buf.append("\", \"sensorId\": \"");
-    buf.append(sensor.id());
+    buf.append(sensor.getId());
     buf.append("\", \"pollingInterval\": ");
     buf.append(pollingInterval);
     buf.append(", [");
@@ -230,27 +236,4 @@ public class SensorProcess extends BaseModel {
     return buf.toString();
   }
 
-  /**
-   * @return The JSON version of this SensorProcess with full representation of
-   *         the Sensor.
-   */
-  public String toJSON() {
-    StringBuffer buf = new StringBuffer();
-    buf.append("{\"id\": \"");
-    buf.append(this.id());
-    buf.append("\", \"sensor\": ");
-    buf.append(sensor.toJSON());
-    buf.append(", \"pollingInterval\": ");
-    buf.append(pollingInterval);
-    buf.append(", [");
-    for (Property p : this.properties) {
-      buf.append("{\"key\": \"" + p.getKey() + "\" \"value\": \"" + p.getValue() + "\"},");
-    }
-    if (properties.size() > 0) {
-      // remove trailing ,
-      buf.deleteCharAt(buf.length() - 1);
-    }
-    buf.append("]}");
-    return buf.toString();
-  }
 }

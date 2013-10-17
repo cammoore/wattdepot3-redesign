@@ -18,6 +18,13 @@ public class SensorGroup extends BaseModel {
   private List<Sensor> sensors;
 
   /**
+   * Hide the default constructor.
+   */
+  protected SensorGroup() {
+
+  }
+
+  /**
    * Create a new SensorGroup with the given unique id.
    * 
    * @param uniqueId
@@ -38,7 +45,7 @@ public class SensorGroup extends BaseModel {
     final int prime = 31;
     int result = 1;
     result = prime * result + ((sensors == null) ? 0 : sensors.hashCode());
-    result = prime * result + ((id() == null) ? 0 : id().hashCode());
+    result = prime * result + ((getId() == null) ? 0 : getId().hashCode());
     return result;
   }
 
@@ -67,12 +74,12 @@ public class SensorGroup extends BaseModel {
     else if (!sensors.equals(other.sensors)) {
       return false;
     }
-    if (id() == null) {
-      if (other.id() != null) {
+    if (getId() == null) {
+      if (other.getId() != null) {
         return false;
       }
     }
-    else if (!id().equals(other.id())) {
+    else if (!getId().equals(other.getId())) {
       return false;
     }
     return true;
@@ -85,7 +92,7 @@ public class SensorGroup extends BaseModel {
    */
   @Override
   public String toString() {
-    return "SensorGroup [id=" + id() + ", sensors=" + sensors + "]";
+    return "SensorGroup [id=" + getId() + ", sensors=" + sensors + "]";
   }
 
   /**
@@ -124,10 +131,10 @@ public class SensorGroup extends BaseModel {
   public String toShortJSON() {
     StringBuffer buf = new StringBuffer();
     buf.append("{id: \"");
-    buf.append(this.id());
+    buf.append(this.getId());
     buf.append("\", \"sensorIds\": [");
     for (Sensor s : sensors) {
-      buf.append(s.id());
+      buf.append(s.getId());
       buf.append(",");
     }
     if (sensors.size() > 0) {
@@ -138,23 +145,4 @@ public class SensorGroup extends BaseModel {
     return buf.toString();
   }
 
-  /**
-   * @return The JSON String representation of this SensorGroup.
-   */
-  public String toJSON() {
-    StringBuffer buf = new StringBuffer();
-    buf.append("{id :\"");
-    buf.append(this.id());
-    buf.append("\", \"sensors\": [");
-    for (Sensor s : sensors) {
-      buf.append(s.toJSON());
-      buf.append(",");
-    }
-    if (sensors.size() > 0) {
-      // remove trailing ,
-      buf.deleteCharAt(buf.length() - 1);
-    }
-    buf.append("]}");
-    return buf.toString();
-  }
 }

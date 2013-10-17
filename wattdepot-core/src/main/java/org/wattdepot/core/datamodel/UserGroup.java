@@ -45,7 +45,7 @@ public class UserGroup {
   /**
    * @return The unique id for the UserGroup.
    */
-  public String id() {
+  public String getId() {
     return id;
   }
 
@@ -148,7 +148,7 @@ public class UserGroup {
     buf.append(this.id);
     buf.append("\", \"userIds\": [");
     for (User u: users) {
-      buf.append(u.id());
+      buf.append(u.getId());
       buf.append(",");
     }
     if (users.size() > 0) {
