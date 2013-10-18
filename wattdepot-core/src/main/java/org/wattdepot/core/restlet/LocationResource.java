@@ -21,7 +21,7 @@ public interface LocationResource {
    * 
    * @return The Location with the given id. The id is sent in the request.
    */
-  @Get
+  @Get("json")
   public Location retrieve();
 
   /**

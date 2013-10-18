@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0                              http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0                              http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>org.wattdepot3</groupId>
     <artifactId>WattDepot-redesign</artifactId>
     <packaging>pom</packaging>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <name>Multi Project WattDepot3</name>
-
+    <prerequisites>
+        <maven>3.0.3</maven>
+    </prerequisites>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <targetJdk>1.7</targetJdk>
-
+        <wattdepot3.version>${project.version}</wattdepot3.version>
         <!-- Dependency Versions -->
         <commons-cli.version>1.2</commons-cli.version>
         <commons-lang.version>2.6</commons-lang.version>
@@ -118,26 +121,6 @@
             <groupId>net.wimpi.modbus</groupId>
             <artifactId>jamod</artifactId>
             <version>${modbus-jamod.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.jcs</groupId>
-            <artifactId>jcs</artifactId>
-            <version>${jcs.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.tomcat</groupId>
-            <artifactId>tomcat-jdbc</artifactId>
-            <version>${tomcat.jdbc.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>${hibernate-core.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-entitymanager</artifactId>
-            <version>${hibernate-core.version}</version>
         </dependency>
         <dependency>
             <groupId>org.json</groupId>
@@ -357,19 +340,6 @@
                     </reportPlugins>
                 </configuration>
             </plugin>
-            <!-- Ant tasks from anttasks.xml. These could be ported to Maven, 
-                but I haven't taken the time to do it. -->
-            <!-- <plugin> <artifactId>maven-antrun-plugin</artifactId> <version>${antrun.plugin.version}</version> 
-                <executions> Create jars during "package" phase <execution> <id>jar</id> 
-                <phase>package</phase> <configuration> <tasks> <ant antfile="${config.dir}/anttasks.build.xml" 
-                target="jar-standalone"/> </tasks> </configuration> <goals> <goal>run</goal> 
-                </goals> </execution> Autogenerate jaxb classes, destroying any custom code 
-                in those classes. This is not part of any phase, but can be called with "mvn 
-                antrun:run execution:jaxb" I haven't tested this, so no guarantees on whether 
-                it works or not. <execution> <id>jaxb</id> <phase/> <configuration> <tasks> 
-                <ant antfile="${config.dir}/anttasks.build.xml" target="jar-standalone"/> 
-                </tasks> </configuration> <goals> <goal>run</goal> </goals> </execution> 
-                </executions> </plugin> -->
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-dependency-plugin</artifactId>
@@ -407,8 +377,10 @@
                         </filter>
                     </filters>
                     <transformers>
-                        <transformer implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer"/>
-                        <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+                        <transformer
+                            implementation="org.apache.maven.plugins.shade.resource.ServicesResourceTransformer" />
+                        <transformer
+                            implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
                             <manifestEntries>
                                 <Main-Class>org.wattdepot.server.Server</Main-Class>
                                 <Build-Number>${project.version}</Build-Number>
@@ -425,25 +397,6 @@
                     </execution>
                 </executions>
             </plugin>
-            <!-- <plugin> <artifactId>maven-assembly-plugin</artifactId> 
-                <version>${assembly.plugin.version}</version> <executions> <execution> <id>full-jar</id> 
-                <phase>package</phase> <goals><goal>single</goal></goals> <configuration> 
-                <descriptorRefs> <descriptorRef>jar-with-dependencies</descriptorRef> </descriptorRefs> 
-                <archive> <manifest> <addDefaultImplementationEntries>true</addDefaultImplementationEntries> 
-                <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries> <addClasspath>true</addClasspath> 
-                </manifest> </archive> </configuration> </execution> zip source <execution> 
-                <id>source</id> <phase>package</phase> <goals><goal>single</goal></goals> 
-                <configuration> <finalName>${project.artifactId}</finalName> <outputDirectory>${project.build.directory}/jar</outputDirectory> 
-                <formats><format>zip</format></formats> <descriptorRefs> <descriptorRef>src</descriptorRef> 
-                </descriptorRefs> </configuration> </execution> zip javadocs <execution> 
-                <id>javadoc</id> <phase>package</phase> <goals><goal>single</goal></goals> 
-                <configuration> <finalName>${project.artifactId}</finalName> <outputDirectory>${project.build.directory}/jar</outputDirectory> 
-                <formats><format>zip</format></formats> <descriptors><descriptor>${config.dir}/javadoc-assembly.xml</descriptor></descriptors> 
-                </configuration> </execution> zip project <execution> <id>dist</id> <phase>package</phase> 
-                <goals><goal>single</goal></goals> <configuration> <finalName>${project.artifactId}-${project.version}</finalName> 
-                <outputDirectory>${project.build.directory}/dist</outputDirectory> <formats><format>zip</format></formats> 
-                <filters> <filter>.git/**</filter> </filters> <descriptors> <descriptor>${config.dir}/distribution-assembly.xml</descriptor> 
-                </descriptors> </configuration> </execution> </executions> </plugin> -->
             <!-- Package it up for Heroku during "package" phase -->
             <plugin>
                 <groupId>org.codehaus.mojo
@@ -481,7 +434,7 @@
     <description>WattDepot is an open source, RESTful web service that collects electricity data (such as current power utilization or cumulative power utilization) from meters and stores it in a database.</description>
     <modules>
         <module>wattdepot-core</module>
-    <module>wattdepot-server</module>
-    <module>wattdepot-client</module>
-  </modules>
+        <module>wattdepot-server</module>
+        <module>wattdepot-client</module>
+    </modules>
 </project>

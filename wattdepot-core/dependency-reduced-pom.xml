@@ -3,7 +3,7 @@
   <parent>
     <artifactId>WattDepot-redesign</artifactId>
     <groupId>org.wattdepot3</groupId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.wattdepot3</groupId>
@@ -37,6 +37,9 @@
     </dependency>
   </dependencies>
   <properties>
+    <findbugs.filter.file>${config.dir}/findbugs.exclude.xml</findbugs.filter.file>
+    <checkstyle.filter.file>${config.dir}/checkstyle.xml</checkstyle.filter.file>
+    <config.dir>${basedir}/..</config.dir>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 </project>

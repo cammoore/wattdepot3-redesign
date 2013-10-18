@@ -3,14 +3,22 @@
   <parent>
     <artifactId>WattDepot-redesign</artifactId>
     <groupId>org.wattdepot3</groupId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
   </parent>
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.wattdepot3</groupId>
-  <artifactId>wattdepot-core</artifactId>
-  <name>wattdepot-core</name>
-  <url>http://maven.apache.org</url>
+  <artifactId>wattdepot-server</artifactId>
+  <name>wattdepot-server</name>
+  <prerequisites>
+    <maven>3.0.3</maven>
+  </prerequisites>
   <dependencies>
+    <dependency>
+      <groupId>org.wattdepot3</groupId>
+      <artifactId>wattdepot-core</artifactId>
+      <version>1.0.0</version>
+      <scope>test</scope>
+    </dependency>
     <dependency>
       <groupId>httpunit</groupId>
       <artifactId>httpunit</artifactId>
@@ -37,6 +45,9 @@
     </dependency>
   </dependencies>
   <properties>
+    <findbugs.filter.file>${config.dir}/findbugs.exclude.xml</findbugs.filter.file>
+    <checkstyle.filter.file>${config.dir}/checkstyle.xml</checkstyle.filter.file>
+    <config.dir>${basedir}/..</config.dir>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
 </project>

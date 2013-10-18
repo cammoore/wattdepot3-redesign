@@ -21,7 +21,7 @@ public interface LocationsResource {
    * 
    * @return a List of the defined Locations.
    */
-  @Get
+  @Get("json")
   public ArrayList<Location> retrieve();
 
 }

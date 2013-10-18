@@ -6,7 +6,7 @@
     <parent>
         <groupId>org.wattdepot3</groupId>
         <artifactId>WattDepot-redesign</artifactId>
-        <version>1.0.0-SNAPSHOT</version>
+        <version>1.0.0</version>
     </parent>
     <groupId>org.wattdepot3</groupId>
     <artifactId>wattdepot-core</artifactId>
@@ -14,5 +14,8 @@
     <url>http://maven.apache.org</url>
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <config.dir>${basedir}/..</config.dir>
+        <findbugs.filter.file>${config.dir}/findbugs.exclude.xml</findbugs.filter.file>
+        <checkstyle.filter.file>${config.dir}/checkstyle.xml</checkstyle.filter.file>        
     </properties>
 </project>
