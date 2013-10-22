@@ -21,7 +21,7 @@ public interface LocationResource {
    * 
    * @return The Location with the given id. The id is sent in the request.
    */
-  @Get("json")
+  @Get("json") // Use JSON as transport encoding.
   public Location retrieve();
 
   /**
@@ -30,7 +30,7 @@ public interface LocationResource {
    * @param location
    *          The Location to store.
    */
-  @Put
+  @Put("json")
   public void store(Location location);
 
   /**

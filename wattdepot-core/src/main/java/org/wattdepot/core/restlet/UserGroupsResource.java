@@ -21,7 +21,7 @@ public interface UserGroupsResource {
    * 
    * @return a List of the defined UserGroups.
    */
-  @Get
+  @Get("json") // Use JSON as transport encoding.
   public ArrayList<UserGroup> retrieve();
 
 }

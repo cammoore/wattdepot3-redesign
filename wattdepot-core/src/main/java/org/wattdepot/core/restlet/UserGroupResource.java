@@ -21,7 +21,7 @@ public interface UserGroupResource {
    * 
    * @return The UserGroup with the given id. The id is sent in the request.
    */
-  @Get
+  @Get("json") // Use JSON as transport encoding.
   public UserGroup retrieve();
 
   /**

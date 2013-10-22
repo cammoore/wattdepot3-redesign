@@ -43,8 +43,7 @@ public class SensorServerResource extends ServerResource implements SensorResour
    */
   @Override
   public void store(Sensor sensor) {
-    // TODO Auto-generated method stub
-
+    System.out.println("PUT /wattdepot/sensor/ with " + sensor);
   }
 
   /* (non-Javadoc)
@@ -52,7 +51,7 @@ public class SensorServerResource extends ServerResource implements SensorResour
    */
   @Override
   public void remove() {
-    // TODO Auto-generated method stub
+    System.out.println("DEL /wattdepot/sensor/{" + sensorId + "}");
 
   }
 

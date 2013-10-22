@@ -3,6 +3,8 @@
  */
 package org.wattdepot.server.restlet;
 
+import org.restlet.data.MediaType;
+import org.restlet.representation.Variant;
 import org.restlet.resource.ResourceException;
 import org.restlet.resource.ServerResource;
 import org.wattdepot.core.datamodel.Location;
@@ -24,6 +26,9 @@ public class LocationServerResource extends ServerResource implements LocationRe
    */
   @Override
   protected void doInit() throws ResourceException {
+    for (Variant v : getVariants()) {
+      System.out.println(v);
+    }
     // first try GET/POST with data
     this.locationId = getQuery().getValues("location_id");
     if (locationId == null) {
@@ -53,6 +58,9 @@ public class LocationServerResource extends ServerResource implements LocationRe
    */
   @Override
   public void store(Location location) {
+    for (Variant v : getVariants()) {
+      System.out.println(v);
+    }
     System.out.println("PUT /wattdepot/location/ with " + location);
   }
 
@@ -63,6 +71,9 @@ public class LocationServerResource extends ServerResource implements LocationRe
    */
   @Override
   public void remove() {
+    for (Variant v : getVariants()) {
+      System.out.println(v);
+    }
     System.out.println("DEL /wattdepot/location/{" + locationId + "}");
   }
 

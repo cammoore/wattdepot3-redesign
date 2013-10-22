@@ -6,7 +6,7 @@ package org.wattdepot.core.restlet;
 import java.util.ArrayList;
 
 import org.restlet.resource.Get;
-import org.wattdepot.core.datamodel.Location;
+import org.wattdepot.core.datamodel.Depository;
 
 /**
  * LocationsResource - The HTTP API for Locations.
@@ -14,14 +14,14 @@ import org.wattdepot.core.datamodel.Location;
  * @author Cam Moore
  * 
  */
-public interface LocationsResource {
+public interface DepositoriesResource {
 
   /**
-   * Defines the GET /wattdepot/locations/ API call.
+   * Defines the GET /wattdepot/depositories/ API call.
    * 
    * @return a List of the defined Locations.
    */
-  @Get("json")  // Use JSON as transport encoding.
-  public ArrayList<Location> retrieve();
+  @Get("json")  // Return data as JSON
+  public ArrayList<Depository> retrieve();
 
 }

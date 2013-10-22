@@ -21,7 +21,7 @@ public interface SensorGroupResource {
    * 
    * @return The SensorGroup with the given id. The id is sent in the request.
    */
-  @Get
+  @Get("json") // Use JSON as transport encoding.
   public SensorGroup retrieve();
 
   /**

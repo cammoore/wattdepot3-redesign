@@ -20,7 +20,7 @@ public interface SensorModelsResouce {
    * 
    * @return a List of the defined SensorModels.
    */
-  @Get
+  @Get("json") // Use JSON as transport encoding.
   public ArrayList<SensorModel> retrieve();
 
 

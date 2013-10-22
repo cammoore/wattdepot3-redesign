@@ -21,7 +21,7 @@ public interface SensorResource {
    * 
    * @return The Sensor with the given id. The id is sent in the request.
    */
-  @Get("json")
+  @Get("json") // Use JSON as transport encoding.
   public Sensor retrieve();
 
   /**

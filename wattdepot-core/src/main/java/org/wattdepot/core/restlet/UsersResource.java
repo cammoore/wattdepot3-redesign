@@ -21,7 +21,7 @@ public interface UsersResource {
    * 
    * @return a List of the defined Users.
    */
-  @Get
+  @Get("json") // Use JSON as transport encoding.
   public ArrayList<User> retrieve();
 
 }

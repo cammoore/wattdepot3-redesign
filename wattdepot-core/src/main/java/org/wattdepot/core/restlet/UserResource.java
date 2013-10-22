@@ -21,7 +21,7 @@ public interface UserResource {
    * 
    * @return The User with the given id. The id is sent in the request.
    */
-  @Get
+  @Get("json") // Use JSON as transport encoding.
   public User retrieve();
 
   /**

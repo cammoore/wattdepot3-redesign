@@ -20,7 +20,7 @@ public interface SensorGroupsResouce {
    * 
    * @return a List of the defined SensorGroups.
    */
-  @Get
+  @Get("json") // Use JSON as transport encoding.
   public ArrayList<SensorGroup> retrieve();
 
 }
