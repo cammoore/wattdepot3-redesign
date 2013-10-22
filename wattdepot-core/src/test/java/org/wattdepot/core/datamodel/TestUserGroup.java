@@ -30,7 +30,7 @@ public class TestUserGroup {
    */
   @Test
   public void testAdd() {
-//    fail("Not yet implemented");
+    fail("Not yet implemented");
   }
 
   /**
