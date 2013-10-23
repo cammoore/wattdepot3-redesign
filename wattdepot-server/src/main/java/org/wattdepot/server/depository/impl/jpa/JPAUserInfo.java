@@ -3,6 +3,7 @@
  */
 package org.wattdepot.server.depository.impl.jpa;
 
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -16,6 +17,7 @@ import org.wattdepot.core.datamodel.UserInfo;
  * @author Cam Moore
  * 
  */
+@Entity
 public class JPAUserInfo extends UserInfo {
   /** The database id. */
   private Long dbId;
