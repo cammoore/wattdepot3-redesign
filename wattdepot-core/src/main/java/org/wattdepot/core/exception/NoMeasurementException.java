@@ -1,7 +1,7 @@
 /**
  * 
  */
-package org.wattdepot.server.depository;
+package org.wattdepot.core.exception;
 
 /**
  * An exception that is thrown when a repository cannot find a measurement.

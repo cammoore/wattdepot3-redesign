@@ -22,11 +22,11 @@ public class TestUserGroup {
   @Test
   public void testContains() {
     UserGroup admin = UserGroup.ADMIN_GROUP;
-    assertTrue(admin.contains(User.ADMIN));
+    assertTrue(admin.contains(UserInfo.ADMIN));
   }
 
   /**
-   * Test method for {@link org.wattdepot.core.datamodel.UserGroup#add(org.wattdepot.core.datamodel.User)}.
+   * Test method for {@link org.wattdepot.core.datamodel.UserGroup#add(org.wattdepot.core.datamodel.UserInfo)}.
    */
   @Test
   public void testAdd() {

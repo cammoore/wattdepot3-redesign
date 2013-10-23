@@ -3,6 +3,7 @@
  */
 package org.wattdepot.core.restlet;
 
+import org.restlet.representation.Representation;
 import org.restlet.resource.Delete;
 import org.restlet.resource.Get;
 import org.restlet.resource.Put;
@@ -24,6 +25,12 @@ public interface UserGroupResource {
   @Get("json") // Use JSON as transport encoding.
   public UserGroup retrieve();
 
+  /**
+   * @return The UserGroup as an HTML page.
+   */
+  @Get("xml | html")
+  public Representation toHtml();
+  
   /**
    * Defines the PUT /wattdepot/usergroup/ API call.
    * 

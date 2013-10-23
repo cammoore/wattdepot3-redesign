@@ -6,7 +6,7 @@ package org.wattdepot.core.restlet;
 import java.util.ArrayList;
 
 import org.restlet.resource.Get;
-import org.wattdepot.core.datamodel.User;
+import org.wattdepot.core.datamodel.UserInfo;
 
 /**
  * UsersResource - The HTTP API for Users.
@@ -14,7 +14,7 @@ import org.wattdepot.core.datamodel.User;
  * @author Cam Moore
  * 
  */
-public interface UsersResource {
+public interface UserInfosResource {
 
   /**
    * Defines the GET /wattdepot/users/ API call.
@@ -22,6 +22,6 @@ public interface UsersResource {
    * @return a List of the defined Users.
    */
   @Get("json") // Use JSON as transport encoding.
-  public ArrayList<User> retrieve();
+  public ArrayList<UserInfo> retrieve();
 
 }

@@ -19,10 +19,10 @@ public class UserGroup {
   /** A unique id. */
   protected String id;
   /** The users in this group. */
-  protected List<User> users;
+  protected List<UserInfo> users;
 
   static {
-    ADMIN_GROUP.add(User.ADMIN);
+    ADMIN_GROUP.add(UserInfo.ADMIN);
   }
   
   /**
@@ -39,7 +39,7 @@ public class UserGroup {
    */
   public UserGroup(String id) {
     this.id = id;
-    this.users = new ArrayList<User>();
+    this.users = new ArrayList<UserInfo>();
   }
 
   /**
@@ -125,7 +125,7 @@ public class UserGroup {
    * @return true if successful.
    * @see java.util.List#add(java.lang.Object)
    */
-  public boolean add(User e) {
+  public boolean add(UserInfo e) {
     return users.add(e);
   }
 
@@ -147,7 +147,7 @@ public class UserGroup {
     buf.append("{id: \"");
     buf.append(this.id);
     buf.append("\", \"userIds\": [");
-    for (User u: users) {
+    for (UserInfo u: users) {
       buf.append(u.getId());
       buf.append(",");
     }
@@ -167,7 +167,7 @@ public class UserGroup {
     buf.append("{id :\"");
     buf.append(this.id);
     buf.append("\", \"users\": [");
-    for (User u: users) {
+    for (UserInfo u: users) {
       buf.append(u.toJSON());
       buf.append(",");
     }

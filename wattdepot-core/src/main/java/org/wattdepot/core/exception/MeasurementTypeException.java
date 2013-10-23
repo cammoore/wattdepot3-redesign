@@ -1,7 +1,7 @@
 /**
  * MeasurementTypeException.java created on Oct 3, 2013 by Cam Moore.
  */
-package org.wattdepot.server.depository;
+package org.wattdepot.core.exception;
 
 /**
  * MeasurementTypeException thrown when a WattDepository is given a measurement

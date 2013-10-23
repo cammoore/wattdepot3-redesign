@@ -3,6 +3,15 @@
  */
 package org.wattdepot.core.datamodel;
 
+import java.util.Date;
+import java.util.List;
+
+import javax.xml.datatype.XMLGregorianCalendar;
+
+import org.wattdepot.core.exception.MeasurementGapException;
+import org.wattdepot.core.exception.MeasurementTypeException;
+import org.wattdepot.core.exception.NoMeasurementException;
+
 /**
  * Depository - Stores measurements from Sensors of the matching measurement
  * type.
@@ -42,7 +51,7 @@ public class Depository extends BaseModel {
   /**
    * @return the name.
    */
-  protected String getName() {
+  public String getName() {
     return name;
   }
 
@@ -50,14 +59,14 @@ public class Depository extends BaseModel {
    * @param name
    *          the name to set.
    */
-  protected void setName(String name) {
+  public void setName(String name) {
     this.name = name;
   }
 
   /**
    * @return the measurementType
    */
-  protected String getMeasurementType() {
+  public String getMeasurementType() {
     return measurementType;
   }
 
@@ -65,7 +74,7 @@ public class Depository extends BaseModel {
    * @param measurementType
    *          the measurementType to set
    */
-  protected void setMeasurementType(String measurementType) {
+  public void setMeasurementType(String measurementType) {
     this.measurementType = measurementType;
   }
 
@@ -118,6 +127,103 @@ public class Depository extends BaseModel {
   @Override
   public String toString() {
     return "Depository [id=" + id + ", measurementType=" + measurementType + "]";
+  }
+
+  /**
+   * @param sensor
+   *          The sensor making the measurements.
+   * @param start
+   *          The start of the period.
+   * @param end
+   *          The end of the period.
+   * @return A list of the Measurements for the given Sensor.
+   */
+  public List<Measurement> getMeasurements(Sensor sensor, XMLGregorianCalendar start,
+      XMLGregorianCalendar end) {
+    throw new RuntimeException("Not implemented.");
+  }
+
+  /**
+   * @param sensor
+   *          The Sensor making the measurements.
+   * @param timestamp
+   *          The time of the value.
+   * @return The Value 'measured' at the given time, most likely an interpolated
+   *         value.
+   * @throws NoMeasurementException
+   *           If there aren't any measurements around the time.
+   */
+  public Double getValue(Sensor sensor, Date timestamp) throws NoMeasurementException {
+    throw new RuntimeException("Not implemented.");
+  }
+
+  /**
+   * @param sensor
+   *          The Sensor making the measurements.
+   * @param start
+   *          The start of the period.
+   * @param end
+   *          The end of the period.
+   * @return The value measured the difference between the end value and the
+   *         start value.
+   * @throws NoMeasurementException
+   *           if there are no measurements around the start or end time.
+   */
+  public Double getValue(Sensor sensor, Date start, Date end) throws NoMeasurementException {
+    throw new RuntimeException("Not implemented.");
+  }
+
+  /**
+   * @param sensor
+   *          The Sensor making the measurements.
+   * @param start
+   *          The start of the interval.
+   * @param end
+   *          The end of the interval
+   * @param gapSeconds
+   *          The maximum number of seconds that measurements need to be within
+   *          the start and end.
+   * @return The value measured the difference between the end value and the
+   *         start value.
+   * @throws NoMeasurementException
+   *           if there are no measurements around the start or end time.
+   * @throws MeasurementGapException
+   *           if the measurements around start or end are too far apart.
+   */
+  public Double getValue(Sensor sensor, Date start, Date end, Long gapSeconds)
+      throws NoMeasurementException, MeasurementGapException {
+    throw new RuntimeException("Not implemented.");
+  }
+
+  /**
+   * @param sensor
+   *          The Sensor making the measurements.
+   * @param timestamp
+   *          The time of the value.
+   * @param gapSeconds
+   *          The maximum number of seconds that measurements need to be within
+   *          the start and end.
+   * @return The Value 'measured' at the given time, most likely an interpolated
+   *         value.
+   * @throws NoMeasurementException
+   *           If there aren't any measurements around the time.
+   * @throws MeasurementGapException
+   *           if the measurements around timestamp are too far apart.
+   */
+  public Double getValue(Sensor sensor, Date timestamp, Long gapSeconds)
+      throws NoMeasurementException, MeasurementGapException {
+    throw new RuntimeException("Not implemented.");
+  }
+
+  /**
+   * @param meas
+   *          The measurement to store.
+   * @throws MeasurementTypeException
+   *           if the type of the measurement doesn't match the Depository
+   *           measurement type.
+   */
+  public void putMeasurement(Measurement meas) throws MeasurementTypeException {
+    throw new RuntimeException("Not implemented.");
   }
 
 }

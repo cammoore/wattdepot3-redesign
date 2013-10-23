@@ -5,6 +5,7 @@ package org.wattdepot.core.restlet;
 
 import java.util.ArrayList;
 
+import org.restlet.representation.Representation;
 import org.restlet.resource.Get;
 import org.wattdepot.core.datamodel.UserGroup;
 
@@ -23,5 +24,11 @@ public interface UserGroupsResource {
    */
   @Get("json") // Use JSON as transport encoding.
   public ArrayList<UserGroup> retrieve();
+
+  /**
+   * @return The UserGroups as an HTML page.
+   */
+  @Get("xml | html")
+  public Representation toHtml();
 
 }
