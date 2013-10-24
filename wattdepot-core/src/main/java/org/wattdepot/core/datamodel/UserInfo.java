@@ -241,21 +241,24 @@ public class UserInfo {
   }
 
   /**
-   * @param email the email to set
+   * @param email
+   *          the email to set
    */
   public void setEmail(String email) {
     this.email = email;
   }
 
   /**
-   * @param firstName the firstName to set
+   * @param firstName
+   *          the firstName to set
    */
   public void setFirstName(String firstName) {
     this.firstName = firstName;
   }
 
   /**
-   * @param lastName the lastName to set
+   * @param lastName
+   *          the lastName to set
    */
   public void setLastName(String lastName) {
     this.lastName = lastName;
@@ -315,7 +318,7 @@ public class UserInfo {
    */
   @Override
   public String toString() {
-    return "User [id=" + id + ", name=" + firstName + ", password=" + password + ", admin=" + admin
-        + ", properties=" + properties + "]";
+    return "User [id=" + id + ", first name=" + firstName + ", password=" + password + ", admin="
+        + admin + ", properties=" + properties + "]";
   }
 }

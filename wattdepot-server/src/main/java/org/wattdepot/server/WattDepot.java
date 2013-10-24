@@ -262,6 +262,10 @@ public abstract class WattDepot {
   public abstract List<Sensor> getSensors();
 
   /**
+   * @return The known/defined UserInfos.
+   */
+  public abstract List<UserInfo> getUsers();
+  /**
    * @param id
    *          The unique id for the WattDepository to get.
    * @return The WattDepository with the given id.

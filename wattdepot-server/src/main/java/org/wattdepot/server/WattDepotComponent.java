@@ -27,6 +27,7 @@ public class WattDepotComponent extends Component {
     setAuthor("Cam Moore");
     // Add a CLAP client connector
     getClients().add(Protocol.CLAP);
+    getClients().add(Protocol.FILE);
 
     // Adds a HTTP server connector
     Server server = getServers().add(Protocol.HTTP, 8119);

@@ -98,6 +98,14 @@ public class JPAWattDepot extends WattDepot {
       locations.put(l.getId(), l);
     }
     entityManager.getTransaction().commit();
+    // userinfos
+    entityManager.getTransaction().begin();
+    List<JPAUserInfo> infos = entityManager.createQuery("from JPAUserInfo", JPAUserInfo.class)
+        .getResultList();
+    for (JPAUserInfo i : infos) {
+      users.put(i.getId(), i);
+    }
+    entityManager.getTransaction().commit();
   }
 
   /*
@@ -476,6 +484,18 @@ public class JPAWattDepot extends WattDepot {
     ArrayList<Sensor> ret = new ArrayList<Sensor>();
     for (JPASensor s : sensors.values()) {
       ret.add(s);
+    }
+    return ret;
+  }
+
+  /* (non-Javadoc)
+   * @see org.wattdepot.server.WattDepot#getUsers()
+   */
+  @Override
+  public List<UserInfo> getUsers() {
+    ArrayList<UserInfo> ret = new ArrayList<UserInfo>();
+    for (JPAUserInfo i : users.values()) {
+      ret.add(i);
     }
     return ret;
   }

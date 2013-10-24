@@ -20,7 +20,7 @@ public class JPAManager {
    */
   private JPAManager() {
     em = Persistence
-        .createEntityManagerFactory("org.wattdepot.datamodel.jpa").createEntityManager();
+        .createEntityManagerFactory("wattdepot-server").createEntityManager();
   }
 
   /**

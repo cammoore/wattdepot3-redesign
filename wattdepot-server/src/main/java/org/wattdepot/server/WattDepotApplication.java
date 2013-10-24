@@ -7,9 +7,11 @@ import org.restlet.Application;
 import org.restlet.Restlet;
 import org.restlet.data.ChallengeScheme;
 import org.restlet.ext.crypto.DigestAuthenticator;
+import org.restlet.resource.Directory;
 import org.restlet.routing.Router;
 import org.restlet.security.ChallengeAuthenticator;
 import org.wattdepot.server.depository.impl.jpa.JPAWattDepot;
+import org.wattdepot.server.restlet.AdminServerResource;
 import org.wattdepot.server.restlet.DepositoriesServerResource;
 import org.wattdepot.server.restlet.DepositoryMeasurementsServerResource;
 import org.wattdepot.server.restlet.DepositoryServerResource;
@@ -67,8 +69,13 @@ public class WattDepotApplication extends Application {
    */
   @Override
   public Restlet createInboundRoot() {
+    System.out.println("user.dir = " + System.getProperty("user.dir"));
     Router router = new Router(getContext());
-//    router.attach("/wattdepot/{group_id}/", GroupServerResource.class);
+    String webRoot = "file:///" + System.getProperty("user.dir") + "/target/classes";
+    Directory directory = new Directory(getContext(), webRoot);
+    directory.setListingAllowed(true);
+    router.attach("/webroot/", directory);
+    router.attach("/wattdepot/{group_id}/", AdminServerResource.class);
     router.attach("/wattdepot/{group_id}/depository/", DepositoryServerResource.class);
     router.attach("/wattdepot/{group_id}/depository/{depository_id}", DepositoryServerResource.class);
     router.attach("/wattdepot/{group_id}/depository/{depository_id}/measurements/",
