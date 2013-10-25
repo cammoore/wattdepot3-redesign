@@ -4,7 +4,6 @@
 package org.wattdepot.core.datamodel;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * SensorProcess - Represents a process that queries a Sensor and produces
@@ -16,13 +15,12 @@ import java.util.List;
 public class SensorProcess extends BaseModel {
   /** The sensor making the measurements. */
   protected Sensor sensor;
-
   /** The number of seconds between polls. */
   protected Long pollingInterval;
   /** The id of the depository where the measurements are stored. */
   protected String depositoryId;
   /** Additional properties for the SensorProcess. */
-  protected List<Property> properties;
+  protected ArrayList<Property> properties;
 
   /**
    * Hide the default constructor.
@@ -128,7 +126,7 @@ public class SensorProcess extends BaseModel {
   /**
    * @return the properties.
    */
-  public List<Property> getProperties() {
+  public ArrayList<Property> getProperties() {
     return properties;
   }
 
@@ -199,7 +197,7 @@ public class SensorProcess extends BaseModel {
    * @param properties
    *          the properties to set
    */
-  public void setProperties(List<Property> properties) {
+  public void setProperties(ArrayList<Property> properties) {
     this.properties = properties;
   }
 

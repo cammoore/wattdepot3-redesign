@@ -4,7 +4,6 @@
 package org.wattdepot.core.datamodel;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * UserGroup - A group of users.
@@ -19,7 +18,7 @@ public class UserGroup {
   /** A unique id. */
   protected String id;
   /** The users in this group. */
-  protected List<UserInfo> users;
+  protected ArrayList<UserInfo> users;
 
   static {
     ADMIN_GROUP.add(UserInfo.ADMIN);
@@ -43,24 +42,23 @@ public class UserGroup {
   }
 
   /**
-   * @return The unique id for the UserGroup.
+   * @param e
+   *          The User to add.
+   * @return true if successful.
+   * @see java.util.List#add(java.lang.Object)
    */
-  public String getId() {
-    return id;
+  public boolean add(UserInfo e) {
+    return users.add(e);
   }
 
-  /*
-   * (non-Javadoc)
-   * 
-   * @see java.lang.Object#hashCode()
+  /**
+   * @param o
+   *          The user to test.
+   * @return true if the user is in the group.
+   * @see java.util.List#contains(java.lang.Object)
    */
-  @Override
-  public int hashCode() {
-    final int prime = 31;
-    int result = 1;
-    result = prime * result + ((id == null) ? 0 : id.hashCode());
-    result = prime * result + ((users == null) ? 0 : users.hashCode());
-    return result;
+  public boolean contains(Object o) {
+    return users.contains(o);
   }
 
   /*
@@ -99,34 +97,32 @@ public class UserGroup {
     return true;
   }
 
+  /**
+   * @return The unique id for the UserGroup.
+   */
+  public String getId() {
+    return id;
+  }
+
+  /**
+   * @return the users.
+   */
+  public ArrayList<UserInfo> getUsers() {
+    return users;
+  }
+
   /*
    * (non-Javadoc)
    * 
-   * @see java.lang.Object#toString()
+   * @see java.lang.Object#hashCode()
    */
   @Override
-  public String toString() {
-    return "UserGroup [id=" + id + ", users=" + users + "]";
-  }
-
-  /**
-   * @param o
-   *          The user to test.
-   * @return true if the user is in the group.
-   * @see java.util.List#contains(java.lang.Object)
-   */
-  public boolean contains(Object o) {
-    return users.contains(o);
-  }
-
-  /**
-   * @param e
-   *          The User to add.
-   * @return true if successful.
-   * @see java.util.List#add(java.lang.Object)
-   */
-  public boolean add(UserInfo e) {
-    return users.add(e);
+  public int hashCode() {
+    final int prime = 31;
+    int result = 1;
+    result = prime * result + ((id == null) ? 0 : id.hashCode());
+    result = prime * result + ((users == null) ? 0 : users.hashCode());
+    return result;
   }
 
   /**
@@ -137,6 +133,42 @@ public class UserGroup {
    */
   public boolean remove(Object o) {
     return users.remove(o);
+  }
+
+  /**
+   * @param id the id to set
+   */
+  public void setId(String id) {
+    this.id = id;
+  }
+
+  /**
+   * @param users the users to set
+   */
+  public void setUsers(ArrayList<UserInfo> users) {
+    this.users = users;
+  }
+  
+  
+
+  /**
+   * @return The JSON String representation of this SensorGroup.
+   */
+  public String toJSON() {
+    StringBuffer buf = new StringBuffer();
+    buf.append("{id :\"");
+    buf.append(this.id);
+    buf.append("\", \"users\": [");
+    for (UserInfo u: users) {
+      buf.append(u.toJSON());
+      buf.append(",");
+    }
+    if (users.size() > 0) {
+      // remove trailing ,
+      buf.deleteCharAt(buf.length() - 1);
+    }
+    buf.append("]}");
+    return buf.toString();
   }
 
   /**
@@ -159,24 +191,14 @@ public class UserGroup {
     return buf.toString();
   }
   
-  /**
-   * @return The JSON String representation of this SensorGroup.
+  /*
+   * (non-Javadoc)
+   * 
+   * @see java.lang.Object#toString()
    */
-  public String toJSON() {
-    StringBuffer buf = new StringBuffer();
-    buf.append("{id :\"");
-    buf.append(this.id);
-    buf.append("\", \"users\": [");
-    for (UserInfo u: users) {
-      buf.append(u.toJSON());
-      buf.append(",");
-    }
-    if (users.size() > 0) {
-      // remove trailing ,
-      buf.deleteCharAt(buf.length() - 1);
-    }
-    buf.append("]}");
-    return buf.toString();
+  @Override
+  public String toString() {
+    return "UserGroup [id=" + id + ", users=" + users + "]";
   }
 
 }

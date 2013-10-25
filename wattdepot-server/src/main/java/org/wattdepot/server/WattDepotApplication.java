@@ -26,6 +26,7 @@ import org.wattdepot.server.restlet.SensorProcessServerResource;
 import org.wattdepot.server.restlet.SensorProcessesServerResource;
 import org.wattdepot.server.restlet.SensorServerResource;
 import org.wattdepot.server.restlet.SensorsServerResource;
+import org.wattdepot.server.restlet.UserInfoServerResource;
 
 /**
  * UserServerApplication Server app.
@@ -98,6 +99,7 @@ public class WattDepotApplication extends Application {
     router.attach("/wattdepot/{group_id}/sensor/", SensorServerResource.class);
     router.attach("/wattdepot/{group_id}/sensor/{sensor_id}", SensorServerResource.class);
     router.attach("/wattdepot/{group_id}/sensors/", SensorsServerResource.class);
+    router.attach("/wattdepot/{group_id}/user/{user_id}", UserInfoServerResource.class);
 
     ChallengeAuthenticator authenticator = new ChallengeAuthenticator(getContext(),
         ChallengeScheme.HTTP_BASIC, "WattDepot Realm");

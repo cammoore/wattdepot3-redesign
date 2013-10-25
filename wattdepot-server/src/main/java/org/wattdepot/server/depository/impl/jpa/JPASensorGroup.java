@@ -3,11 +3,14 @@
  */
 package org.wattdepot.server.depository.impl.jpa;
 
+import java.util.ArrayList;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
+import org.wattdepot.core.datamodel.Sensor;
 import org.wattdepot.core.datamodel.SensorGroup;
 
 /**
@@ -50,4 +53,21 @@ public class JPASensorGroup extends SensorGroup {
   public void setDBId(Long id) {
     this.dbId = id;
   }
+  
+  /**
+   * @return the sensors
+   */
+  public ArrayList<Sensor> getSensors() {
+    return sensors;
+  }
+
+  /**
+   * @param sensors
+   *          the sensors to set
+   */
+  public void setSensors(ArrayList<Sensor> sensors) {
+    this.sensors = sensors;
+  }
+
+
 }

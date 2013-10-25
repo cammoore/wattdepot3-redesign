@@ -15,11 +15,13 @@
         <maven>3.0.3</maven>
     </prerequisites>
     <properties>
-        
+
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <config.dir>${basedir}/..</config.dir>
         <findbugs.filter.file>${config.dir}/findbugs.exclude.xml</findbugs.filter.file>
         <checkstyle.filter.file>${config.dir}/checkstyle.xml</checkstyle.filter.file>
+        <postgres.version>9.1-901-1.jdbc4</postgres.version>
+
     </properties>
     <dependencies>
         <dependency>
@@ -83,6 +85,10 @@
             <artifactId>hibernate-entitymanager</artifactId>
             <version>${hibernate-core.version}</version>
         </dependency>
-        
+        <dependency>
+            <groupId>postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${postgres.version}</version>
+        </dependency>
     </dependencies>
 </project>

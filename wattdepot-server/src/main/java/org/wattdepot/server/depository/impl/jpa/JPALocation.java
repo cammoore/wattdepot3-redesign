@@ -44,11 +44,12 @@ public class JPALocation extends Location {
   }
 
   /**
-   * @param location The Location to clone.
+   * @param location
+   *          The Location to clone.
    */
   protected JPALocation(Location location) {
-    super(location.getId(), location.getLatitude(), location.getLongitude(), location
-        .getAltitude(), location.getDescription());
+    super(location.getId(), location.getLatitude(), location.getLongitude(),
+        location.getAltitude(), location.getDescription());
   }
 
   /**
@@ -66,6 +67,66 @@ public class JPALocation extends Location {
    */
   public void setDBId(Long id) {
     this.dbId = id;
+  }
+
+  /**
+   * @return the latitude
+   */
+  public Double getLatitude() {
+    return latitude;
+  }
+
+  /**
+   * @param latitude
+   *          the latitude to set
+   */
+  public void setLatitude(Double latitude) {
+    this.latitude = latitude;
+  }
+
+  /**
+   * @return the longitude
+   */
+  public Double getLongitude() {
+    return longitude;
+  }
+
+  /**
+   * @param longitude
+   *          the longitude to set
+   */
+  public void setLongitude(Double longitude) {
+    this.longitude = longitude;
+  }
+
+  /**
+   * @return the altitude
+   */
+  public Double getAltitude() {
+    return altitude;
+  }
+
+  /**
+   * @param altitude
+   *          the altitude to set
+   */
+  public void setAltitude(Double altitude) {
+    this.altitude = altitude;
+  }
+
+  /**
+   * @return the description
+   */
+  public String getDescription() {
+    return description;
+  }
+
+  /**
+   * @param description
+   *          the description to set
+   */
+  public void setDescription(String description) {
+    this.description = description;
   }
 
 }

@@ -13,19 +13,19 @@ public class Location extends BaseModel {
   /**
    * The Location's decimal Latitude.
    */
-  private Double latitude;
+  protected Double latitude;
   /**
    * The Location's decimal Longitude.
    */
-  private Double longitude;
+  protected Double longitude;
   /**
    * The Location's altitude in meters MSL.
    */
-  private Double altitude;
+  protected Double altitude;
   /**
    * The Location's description.
    */
-  private String description;
+  protected String description;
 
   /**
    * Default constructor.

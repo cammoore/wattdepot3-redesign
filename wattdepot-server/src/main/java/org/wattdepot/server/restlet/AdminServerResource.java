@@ -50,7 +50,6 @@ public class AdminServerResource extends ServerResource {
     Map<String, Object> dataModel = new HashMap<String, Object>();
     // get some stuff from the database
     List<UserInfo> users = depot.getUsers();
-    users.add(UserInfo.ADMIN);
     dataModel.put("users", users);
     Representation rep = new ClientResource(LocalReference.createClapReference(getClass()
         .getPackage()) + "/Admin.ftl").get();

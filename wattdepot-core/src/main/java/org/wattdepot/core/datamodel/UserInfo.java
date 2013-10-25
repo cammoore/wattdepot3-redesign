@@ -29,7 +29,7 @@ public class UserInfo {
   /** True if the user is an admin. */
   protected Boolean admin;
   /** Additional properties of the user. */
-  protected List<Property> properties;
+  protected ArrayList<Property> properties;
 
   static {
     String password = System.getenv("wattdepot-server.admin.password");
@@ -257,6 +257,13 @@ public class UserInfo {
   }
 
   /**
+   * @param id the id to set
+   */
+  public void setId(String id) {
+    this.id = id;
+  }
+
+  /**
    * @param lastName
    *          the lastName to set
    */
@@ -270,6 +277,13 @@ public class UserInfo {
    */
   public void setPassword(String password) {
     this.password = password;
+  }
+
+  /**
+   * @param properties the properties to set
+   */
+  public void setProperties(ArrayList<Property> properties) {
+    this.properties = properties;
   }
 
   /**

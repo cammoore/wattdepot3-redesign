@@ -19,6 +19,7 @@ import org.wattdepot.core.datamodel.SensorGroup;
 import org.wattdepot.core.datamodel.SensorModel;
 import org.wattdepot.core.datamodel.SensorProcess;
 import org.wattdepot.core.datamodel.Depository;
+import org.wattdepot.core.datamodel.UserGroup;
 import org.wattdepot.core.datamodel.UserInfo;
 
 /**
@@ -35,6 +36,7 @@ public class JPAWattDepot extends WattDepot {
   private Map<String, JPASensorProcess> sensorProcesses;
   private Map<String, JPALocation> locations;
   private Map<String, JPAUserInfo> users;
+  private Map<String, JPAUserGroup> groups;
 
   /** Default constructor. */
   public JPAWattDepot() {
@@ -45,6 +47,7 @@ public class JPAWattDepot extends WattDepot {
     this.sensorProcesses = new HashMap<String, JPASensorProcess>();
     this.sensors = new HashMap<String, JPASensor>();
     this.users = new HashMap<String, JPAUserInfo>();
+    this.groups = new HashMap<String, JPAUserGroup>();
 
     // Initialize the hash tables from the persistent store.
     EntityManager entityManager = JPAManager.getInstance().getEntityManager();
@@ -104,6 +107,15 @@ public class JPAWattDepot extends WattDepot {
         .getResultList();
     for (JPAUserInfo i : infos) {
       users.put(i.getId(), i);
+    }
+    users.put(UserInfo.ADMIN.getId(), new JPAUserInfo(UserInfo.ADMIN));
+    entityManager.getTransaction().commit();
+    // groups
+    entityManager.getTransaction().begin();
+    List<JPAUserGroup> groupList = entityManager.createQuery("from JPAUserGroup",
+        JPAUserGroup.class).getResultList();
+    for (JPAUserGroup g : groupList) {
+      groups.put(g.getId(), g);
     }
     entityManager.getTransaction().commit();
   }
@@ -216,8 +228,36 @@ public class JPAWattDepot extends WattDepot {
     return sp;
   }
 
-  /* (non-Javadoc)
-   * @see org.wattdepot.server.WattDepot#defineUserInfo(java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.String, java.lang.Boolean)
+  /*
+   * (non-Javadoc)
+   * 
+   * @see org.wattdepot.server.WattDepot#defineUserGroup(java.lang.String,
+   * org.wattdepot.core.datamodel.UserInfo[])
+   */
+  @Override
+  public UserGroup defineUserGroup(String id, UserInfo... users) throws UniqueIdException {
+    if (groups.containsKey(id)) {
+      throw new UniqueIdException(id + " is already a UserGroup id.");
+    }
+    EntityManager entityManager = JPAManager.getInstance().getEntityManager();
+    entityManager.getTransaction().begin();
+    JPAUserGroup g = new JPAUserGroup(id);
+    for (UserInfo i : users) {
+      JPAUserInfo ji = new JPAUserInfo(i);
+      entityManager.persist(ji);
+      g.add(ji);
+    }
+    entityManager.persist(g);
+    entityManager.getTransaction().commit();    
+    return g;
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see org.wattdepot.server.WattDepot#defineUserInfo(java.lang.String,
+   * java.lang.String, java.lang.String, java.lang.String, java.lang.String,
+   * java.lang.Boolean)
    */
   @Override
   public UserInfo defineUserInfo(String id, String firstName, String lastName, String email,
@@ -226,6 +266,7 @@ public class JPAWattDepot extends WattDepot {
       throw new UniqueIdException(id + " is already a UserInfo unique id.");
     }
     JPAUserInfo info = new JPAUserInfo(id, firstName, lastName, email, password, admin);
+    users.put(info.getId(), info);
     EntityManager entityManager = JPAManager.getInstance().getEntityManager();
     entityManager.getTransaction().begin();
     entityManager.persist(info);
@@ -343,6 +384,43 @@ public class JPAWattDepot extends WattDepot {
     entityManager.getTransaction().begin();
     entityManager.remove(sp);
     entityManager.getTransaction().commit();
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see org.wattdepot.server.WattDepot#deleteUser(java.lang.String)
+   */
+  @Override
+  public void deleteUser(String id) throws IdNotFoundException {
+    UserInfo info = users.get(id);
+    if (info == null) {
+      throw new IdNotFoundException(id + " is not a defined user info id.");
+    }
+    users.remove(id);
+    EntityManager entityManager = JPAManager.getInstance().getEntityManager();
+    entityManager.getTransaction().begin();
+    entityManager.remove(info);
+    entityManager.getTransaction().commit();
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
+   * @see org.wattdepot.server.WattDepot#deleteUserGroup(java.lang.String)
+   */
+  @Override
+  public void deleteUserGroup(String id) throws IdNotFoundException {
+    UserGroup group = groups.get(id);
+    if (group == null) {
+      throw new IdNotFoundException(id + " is not a defined user group id.");
+    }
+    groups.remove(id);
+    EntityManager entityManager = JPAManager.getInstance().getEntityManager();
+    entityManager.getTransaction().begin();
+    entityManager.remove(group);
+    entityManager.getTransaction().commit();
+    
   }
 
   /*
@@ -488,13 +566,26 @@ public class JPAWattDepot extends WattDepot {
     return ret;
   }
 
-  /* (non-Javadoc)
+  /*
+   * (non-Javadoc)
+   * 
+   * @see org.wattdepot.server.WattDepot#getUser(java.lang.String)
+   */
+  @Override
+  public UserInfo getUser(String id) {
+    return users.get(id);
+  }
+
+  /*
+   * (non-Javadoc)
+   * 
    * @see org.wattdepot.server.WattDepot#getUsers()
    */
   @Override
   public List<UserInfo> getUsers() {
     ArrayList<UserInfo> ret = new ArrayList<UserInfo>();
     for (JPAUserInfo i : users.values()) {
+      System.out.println(i);
       ret.add(i);
     }
     return ret;

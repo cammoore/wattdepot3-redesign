@@ -3,6 +3,8 @@
  */
 package org.wattdepot.server.depository.impl.jpa;
 
+import java.util.ArrayList;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -71,4 +73,50 @@ public class JPASensorProcess extends SensorProcess {
   public void setDBId(Long id) {
     this.dbId = id;
   }
+
+  /**
+   * @return the depositoryId
+   */
+  public String getDepositoryId() {
+    return depositoryId;
+  }
+
+  /**
+   * @return the pollingInterval.
+   */
+  public Long getPollingInterval() {
+    return pollingInterval;
+  }
+
+  /**
+   * @return the properties.
+   */
+  public ArrayList<Property> getProperties() {
+    return properties;
+  }
+
+  /**
+   * @param depositoryId
+   *          the depositoryId to set
+   */
+  public void setDepositoryId(String depositoryId) {
+    this.depositoryId = depositoryId;
+  }
+
+  /**
+   * @param pollingInterval
+   *          the pollingInterval to set
+   */
+  public void setPollingInterval(Long pollingInterval) {
+    this.pollingInterval = pollingInterval;
+  }
+
+  /**
+   * @param properties
+   *          the properties to set
+   */
+  public void setProperties(ArrayList<Property> properties) {
+    this.properties = properties;
+  }
+
 }

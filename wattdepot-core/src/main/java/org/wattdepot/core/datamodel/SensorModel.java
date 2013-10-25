@@ -11,11 +11,11 @@ package org.wattdepot.core.datamodel;
  */
 public class SensorModel extends BaseModel {
   /** The protocol this meter uses. */
-  private String protocol;
+  protected String protocol;
   /** The type of the meter. */
-  private String type;
+  protected String type;
   /** The version of the meter model. */
-  private String version;
+  protected String version;
 
   /**
    * Hide the default constructor.

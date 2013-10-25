@@ -15,8 +15,15 @@
         <class>org.wattdepot.server.depository.impl.jpa.JPAMeasurement</class>
         <class>org.wattdepot.server.depository.impl.jpa.JPAWattDepositoryDescription</class>
         <class>org.wattdepot.server.depository.impl.jpa.JPAUserInfo</class>
+        <class>org.wattdepot.server.depository.impl.jpa.JPAUserGroup</class>
         <properties>
-            <property name="javax.persistence.jdbc.driver"
+            <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
+            <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/wattdepot3"/>
+            <property name="javax.persistence.jdbc.user" value="wattdepot"/>
+            <property name="javax.persistence.jdbc.password" value="topedttaw"/>
+            <property name="hibernate.show_sql" value="true"/>
+            <property name="hibernate.hbm2ddl.auto" value="update" />
+<!--             <property name="javax.persistence.jdbc.driver"
                 value="org.h2.Driver" />
             <property name="javax.persistence.jdbc.url"
                 value="jdbc:h2:mem:db1;DB_CLOSE_DELAY=-1;MVCC=TRUE" />
@@ -28,7 +35,7 @@
 
             <property name="hibernate.show_sql" value="true" />
             <property name="hibernate.hbm2ddl.auto" value="create" />
-
+ -->
         </properties>
     </persistence-unit>
 </persistence>

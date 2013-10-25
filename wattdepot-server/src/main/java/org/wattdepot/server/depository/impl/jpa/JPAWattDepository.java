@@ -3,6 +3,7 @@
  */
 package org.wattdepot.server.depository.impl.jpa;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -46,15 +47,15 @@ public class JPAWattDepository extends Depository {
    * .server.datamodel.Sensor, java.util.Date, java.util.Date)
    */
   @Override
-  public List<Measurement> getMeasurements(Sensor sensor, XMLGregorianCalendar start,
-      XMLGregorianCalendar end) {
+  public List<Measurement> getMeasurements(Sensor sensor, Timestamp timestamp,
+      Timestamp timestamp2) {
     EntityManager entityManager = JPAManager.getInstance().getEntityManager();
     entityManager.getTransaction().begin();
     List<JPAMeasurement> result = entityManager
         .createQuery(
             "FROM JPAMeasurement WHERE timestamp >= :start AND timestamp <= :end "
                 + "AND measurementType = :measType" + " AND depository = :name",
-            JPAMeasurement.class).setParameter("start", start).setParameter("end", end)
+            JPAMeasurement.class).setParameter("start", timestamp).setParameter("end", timestamp2)
         .setParameter("measType", getMeasurementType()).setParameter("name", this.getName())
         .getResultList();
     entityManager.getTransaction().commit();
@@ -113,7 +114,7 @@ public class JPAWattDepository extends Depository {
           if (justBefore == null) {
             justBefore = p;
           }
-          else if (TstampComparator.compareTo(p.getTimestamp(), justBefore.getTimestamp()) > 0) {
+          else if (p.getTimestamp().compareTo(justBefore.getTimestamp()) > 0) {
             justBefore = p;
           }
         }
@@ -124,7 +125,7 @@ public class JPAWattDepository extends Depository {
           if (justAfter == null) {
             justAfter = p;
           }
-          else if (TstampComparator.compareTo(p.getTimestamp(), justAfter.getTimestamp()) < 0) {
+          else if (p.getTimestamp().compareTo(justAfter.getTimestamp()) < 0) {
             justAfter = p;
           }
         }
@@ -133,8 +134,8 @@ public class JPAWattDepository extends Depository {
         Double val1 = justBefore.getValue();
         Double val2 = justAfter.getValue();
         Double deltaV = val2 - val1;
-        Long t1 = justBefore.getTimestamp().toGregorianCalendar().getTimeInMillis();
-        Long t2 = justAfter.getTimestamp().toGregorianCalendar().getTimeInMillis();
+        Long t1 = justBefore.getTimestamp().getTime();
+        Long t2 = justAfter.getTimestamp().getTime();
         Long deltaT = t2 - t1;
         Long t3 = timestamp.getTime();
         Long toTimestamp = t3 - t1;
@@ -238,7 +239,7 @@ public class JPAWattDepository extends Depository {
           if (justBefore == null) {
             justBefore = p;
           }
-          else if (TstampComparator.compareTo(p.getTimestamp(), justBefore.getTimestamp()) > 0) {
+          else if (p.getTimestamp().compareTo(justBefore.getTimestamp()) > 0) {
             justBefore = p;
           }
         }
@@ -249,7 +250,7 @@ public class JPAWattDepository extends Depository {
           if (justAfter == null) {
             justAfter = p;
           }
-          else if (TstampComparator.compareTo(p.getTimestamp(), justAfter.getTimestamp()) < 0) {
+          else if (p.getTimestamp().compareTo(justAfter.getTimestamp()) < 0) {
             justAfter = p;
           }
         }
@@ -258,8 +259,8 @@ public class JPAWattDepository extends Depository {
         Double val1 = justBefore.getValue();
         Double val2 = justAfter.getValue();
         Double deltaV = val2 - val1;
-        Long t1 = justBefore.getTimestamp().toGregorianCalendar().getTimeInMillis();
-        Long t2 = justAfter.getTimestamp().toGregorianCalendar().getTimeInMillis();
+        Long t1 = justBefore.getTimestamp().getTime();
+        Long t2 = justAfter.getTimestamp().getTime();
         Long deltaT = t2 - t1;
         if ((deltaT / 1000) > gapSeconds) {
           throw new MeasurementGapException("Gap of " + (deltaT / 1000) + "s is longer than "

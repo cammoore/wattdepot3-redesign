@@ -11,6 +11,7 @@ import org.wattdepot.core.datamodel.SensorGroup;
 import org.wattdepot.core.datamodel.SensorModel;
 import org.wattdepot.core.datamodel.SensorProcess;
 import org.wattdepot.core.datamodel.Depository;
+import org.wattdepot.core.datamodel.UserGroup;
 import org.wattdepot.core.datamodel.UserInfo;
 
 /**
@@ -120,10 +121,23 @@ public abstract class WattDepot {
    *          The user's password.
    * @param admin
    *          True if they are an admin.
-   * @throws UniqueIdException  if the id is already used for another UserInfo.
+   * @return The defined UserInfo.
+   * @throws UniqueIdException
+   *           if the id is already used for another UserInfo.
    */
   public abstract UserInfo defineUserInfo(String id, String firstName, String lastName,
       String email, String password, Boolean admin) throws UniqueIdException;
+
+  /**
+   * @param id
+   *          The unique id.
+   * @param users
+   *          The members of the group.
+   * @return The defined UserGroup.
+   * @throws UniqueIdException
+   *           If the id is already used for another UserGroup.
+   */
+  public abstract UserGroup defineUserGroup(String id, UserInfo... users) throws UniqueIdException;
 
   /**
    * Defines a new WattDepository in WattDepot.
@@ -190,6 +204,22 @@ public abstract class WattDepot {
    *           If the id is not known or defined.
    */
   public abstract void deleteSensorProcess(String id) throws IdNotFoundException;
+
+  /**
+   * @param id
+   *          The unique id of the User.
+   * @throws IdNotFoundException
+   *           If the id is not known or defined.
+   */
+  public abstract void deleteUser(String id) throws IdNotFoundException;
+
+  /**
+   * @param id
+   *          The unique id of the UserGroup.
+   * @throws IdNotFoundException
+   *           If the id is not known or defined.
+   */
+  public abstract void deleteUserGroup(String id) throws IdNotFoundException;
 
   /**
    * Deletes the given WattDepository.
@@ -262,9 +292,17 @@ public abstract class WattDepot {
   public abstract List<Sensor> getSensors();
 
   /**
+   * @param id
+   *          the unique id for the UserInfo.
+   * @return The UserInfo with the given id.
+   */
+  public abstract UserInfo getUser(String id);
+
+  /**
    * @return The known/defined UserInfos.
    */
   public abstract List<UserInfo> getUsers();
+
   /**
    * @param id
    *          The unique id for the WattDepository to get.

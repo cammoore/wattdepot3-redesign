@@ -3,10 +3,9 @@
  */
 package org.wattdepot.core.datamodel;
 
+import java.sql.Timestamp;
 import java.util.Date;
 import java.util.List;
-
-import javax.xml.datatype.XMLGregorianCalendar;
 
 import org.wattdepot.core.exception.MeasurementGapException;
 import org.wattdepot.core.exception.MeasurementTypeException;
@@ -131,20 +130,6 @@ public class Depository extends BaseModel {
 
   /**
    * @param sensor
-   *          The sensor making the measurements.
-   * @param start
-   *          The start of the period.
-   * @param end
-   *          The end of the period.
-   * @return A list of the Measurements for the given Sensor.
-   */
-  public List<Measurement> getMeasurements(Sensor sensor, XMLGregorianCalendar start,
-      XMLGregorianCalendar end) {
-    throw new RuntimeException("Not implemented.");
-  }
-
-  /**
-   * @param sensor
    *          The Sensor making the measurements.
    * @param timestamp
    *          The time of the value.
@@ -223,6 +208,19 @@ public class Depository extends BaseModel {
    *           measurement type.
    */
   public void putMeasurement(Measurement meas) throws MeasurementTypeException {
+    throw new RuntimeException("Not implemented.");
+  }
+
+  /**
+   * @param sensor
+   *          The Sensor.
+   * @param start
+   *          The start of the interval.
+   * @param end
+   *          The end of the interval.
+   * @return A list of the measurements in the interval.
+   */
+  public List<Measurement> getMeasurements(Sensor sensor, Timestamp start, Timestamp end) {
     throw new RuntimeException("Not implemented.");
   }
 

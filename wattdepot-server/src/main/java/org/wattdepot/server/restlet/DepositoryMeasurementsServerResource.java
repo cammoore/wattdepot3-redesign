@@ -3,6 +3,8 @@
  */
 package org.wattdepot.server.restlet;
 
+import java.sql.Timestamp;
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
@@ -61,17 +63,10 @@ public class DepositoryMeasurementsServerResource extends ServerResource impleme
           21.294642), new Double(-157.812727), new Double(40),
           "Hale Aloha Ilima residence hall 7th floor"), new SensorModel("sm1", "Hammer", "hammer",
           "1.0"));
-      
-      XMLGregorianCalendar xgcal;
-      try {
-        xgcal = Tstamp.makeTimestamp(start);
-        ret.add(new Measurement(s, xgcal, new Double(102.3), "energy"));
-        return ret;
-      }
-      catch (Exception e) {
-        // TODO Auto-generated catch block
-        e.printStackTrace();
-      }
+
+      Timestamp now = new Timestamp(new Date().getTime());
+      ret.add(new Measurement(s, now, new Double(102.3), "energy"));
+      return ret;
 
     }
     // can't get measurements for bad url. TODO: set error code on response.

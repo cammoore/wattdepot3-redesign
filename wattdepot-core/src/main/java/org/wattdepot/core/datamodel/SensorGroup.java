@@ -4,7 +4,6 @@
 package org.wattdepot.core.datamodel;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * SensorGroup represents a group of Sensors. Used for aggregating sensor
@@ -15,7 +14,7 @@ import java.util.List;
  */
 public class SensorGroup extends BaseModel {
   /** The List of sensors the compose this group. */
-  private List<Sensor> sensors;
+  protected ArrayList<Sensor> sensors;
 
   /**
    * Hide the default constructor.
@@ -33,6 +32,21 @@ public class SensorGroup extends BaseModel {
   public SensorGroup(String uniqueId) {
     super(uniqueId);
     this.sensors = new ArrayList<Sensor>();
+  }
+
+  /**
+   * @return the sensors
+   */
+  public ArrayList<Sensor> getSensors() {
+    return sensors;
+  }
+
+  /**
+   * @param sensors
+   *          the sensors to set
+   */
+  public void setSensors(ArrayList<Sensor> sensors) {
+    this.sensors = sensors;
   }
 
   /*

@@ -4,7 +4,6 @@
 package org.wattdepot.core.datamodel;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Sensor - Represents the device making measurements.
@@ -20,7 +19,7 @@ public class Sensor extends BaseModel {
   /** The model of the sensor. */
   protected SensorModel model;
   /** Additional properties of the sensor. */
-  protected List<Property> properties;
+  protected ArrayList<Property> properties;
 
   /**
    * Default constructor.
@@ -95,7 +94,7 @@ public class Sensor extends BaseModel {
   /**
    * @return the properties
    */
-  public List<Property> getProperties() {
+  public ArrayList<Property> getProperties() {
     return properties;
   }
 

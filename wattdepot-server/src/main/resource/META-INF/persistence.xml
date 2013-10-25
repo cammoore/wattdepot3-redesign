@@ -11,6 +11,7 @@
         <class>org.wattdepot.server.depository.impl.jpa.JPAMeasurement</class>
         <class>org.wattdepot.server.depository.impl.jpa.JPAWattDepositoryDescription</class>
         <class>org.wattdepot.server.depository.impl.jpa.JPAUserInfo</class>
+        <class>org.wattdepot.server.depository.impl.jpa.JPAUserGroup</class>
         <properties>
             <property name="javax.persistence.jdbc.driver"
                 value="org.h2.Driver" />

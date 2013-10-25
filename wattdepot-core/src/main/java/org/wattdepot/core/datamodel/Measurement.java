@@ -3,7 +3,7 @@
  */
 package org.wattdepot.core.datamodel;
 
-import javax.xml.datatype.XMLGregorianCalendar;
+import java.sql.Timestamp;
 
 /**
  * Measurement - represents a measurement from a sensor.
@@ -12,18 +12,18 @@ import javax.xml.datatype.XMLGregorianCalendar;
  * 
  */
 public class Measurement {
-  private Sensor sensor;
-  private XMLGregorianCalendar timestamp;
-  private Double value;
-  private String measurementType;
+  protected Sensor sensor;
+  protected Timestamp timestamp;
+  protected Double value;
+  protected String measurementType;
 
   /**
    * Hide the default constructor.
    */
   protected Measurement() {
-    
+
   }
-  
+
   /**
    * @param sensor
    *          The sensor that made the measurement.
@@ -34,7 +34,7 @@ public class Measurement {
    * @param measurementType
    *          The type of the measurement.
    */
-  public Measurement(Sensor sensor, XMLGregorianCalendar timestamp, Double value, String measurementType) {
+  public Measurement(Sensor sensor, Timestamp timestamp, Double value, String measurementType) {
     this.sensor = sensor;
     this.timestamp = timestamp;
     this.value = value;
@@ -51,7 +51,7 @@ public class Measurement {
   /**
    * @return the timestamp
    */
-  public XMLGregorianCalendar getTimestamp() {
+  public Timestamp getTimestamp() {
     return timestamp;
   }
 
@@ -149,7 +149,8 @@ public class Measurement {
   }
 
   /**
-   * @return The JSON representation of this Measurement with Sensor Id instead of embedded Sensor.
+   * @return The JSON representation of this Measurement with Sensor Id instead
+   *         of embedded Sensor.
    */
   public String toShortJSON() {
     StringBuffer buf = new StringBuffer();
@@ -161,7 +162,7 @@ public class Measurement {
     buf.append(value);
     buf.append(", \"measurementType\": \"");
     buf.append(measurementType);
-    buf.append("\"}");    
+    buf.append("\"}");
     return buf.toString();
   }
 }
